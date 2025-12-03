@@ -1,36 +1,37 @@
-import java.util.*;
+// Chương trình lọc và sắp xếp số nguyên tố từ mảng nhập vào.
+// Chạy trong trình duyệt (browser console) hoặc Node.js với prompt (nếu hỗ trợ).
 
-public class bai3 {
-
-    // Hàm kiểm tra số nguyên tố
-    static boolean isPrime(int n) {
-        if (n <= 1) return false;
-        for (int i = 2; i * i <= n; i++)
-            if (n % i == 0) return false;
-        return true;
+// Hàm kiểm tra số nguyên tố
+function isPrime(n) {
+    if (n <= 1) return false;
+    for (let i = 2; i * i <= n; i++) {
+        if (n % i === 0) return false;
     }
+    return true;
+}
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+// Nhập mảng dưới dạng chuỗi, ví dụ: [1,2,3,4]
+let input = prompt("Nhập mảng: ");
+if (input === null) {
+    console.log("Không có input. Chương trình kết thúc.");
+    return;
+}
 
-        System.out.print("Nhập mảng: ");
-        String input = sc.nextLine();
+// Bỏ dấu [ và ]
+input = input.replace("[", "").replace("]", "");
 
-        // Bỏ dấu [ và ]
-        input = input.replace("[", "").replace("]", "");
+// Tách và chuyển thành mảng số
+let parts = input.split(",");
+let primes = [];
 
-        String[] parts = input.split(",");
-        ArrayList<Integer> primes = new ArrayList<>();
-
-        // Lọc số nguyên tố
-        for (String p : parts) {
-            int num = Integer.parseInt(p.trim());
-            if (isPrime(num)) primes.add(num);
-        }
-
-        // Sắp xếp tăng dần
-        Collections.sort(primes);
-
-        System.out.println(primes);
+for (let p of parts) {
+    let num = parseInt(p.trim());
+    if (!isNaN(num) && isPrime(num)) {
+        primes.push(num);
     }
 }
+
+// Sắp xếp tăng dần
+primes.sort((a, b) => a - b);
+
+console.log(primes);
