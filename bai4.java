@@ -1,16 +1,8 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+// Chương trình quản lý danh sách điện thoại.
+// Chạy trong trình duyệt (browser console) hoặc Node.js với prompt (nếu hỗ trợ).
 
 class Phone {
-    private String maDienThoai;
-    private String ten;
-    private String hangSanXuat;
-    private double gia;
-
-    // Constructor
-    public Phone(String maDienThoai, String ten, String hangSanXuat, double gia) {
+    constructor(maDienThoai, ten, hangSanXuat, gia) {
         this.maDienThoai = maDienThoai;
         this.ten = ten;
         this.hangSanXuat = hangSanXuat;
@@ -18,89 +10,99 @@ class Phone {
     }
 
     // Getters
-    public String getMaDienThoai() {
-        return maDienThoai;
+    getMaDienThoai() {
+        return this.maDienThoai;
     }
 
-    public String getTen() {
-        return ten;
+    getTen() {
+        return this.ten;
     }
 
-    public String getHangSanXuat() {
-        return hangSanXuat;
+    getHangSanXuat() {
+        return this.hangSanXuat;
     }
 
-    public double getGia() {
-        return gia;
+    getGia() {
+        return this.gia;
     }
 
     // Setters
-    public void setMaDienThoai(String maDienThoai) {
+    setMaDienThoai(maDienThoai) {
         this.maDienThoai = maDienThoai;
     }
 
-    public void setTen(String ten) {
+    setTen(ten) {
         this.ten = ten;
     }
 
-    public void setHangSanXuat(String hangSanXuat) {
+    setHangSanXuat(hangSanXuat) {
         this.hangSanXuat = hangSanXuat;
     }
 
-    public void setGia(double gia) {
+    setGia(gia) {
         this.gia = gia;
     }
 
     // toString method
-    @Override
-    public String toString() {
-        return "Mã điện thoại: " + maDienThoai + ", Tên: " + ten + ", Hãng sản xuất: " + hangSanXuat + ", Giá: " + gia;
+    toString() {
+        return "Mã điện thoại: " + this.maDienThoai + ", Tên: " + this.ten + ", Hãng sản xuất: " + this.hangSanXuat + ", Giá: " + this.gia;
     }
 }
 
-public class bai4 {
-    public static void main(String[] args) {
-        ArrayList<Phone> danhSachDienThoai = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
+// Tạo danh sách điện thoại
+let danhSachDienThoai = [];
 
-        // Thêm dữ liệu mẫu
-        danhSachDienThoai.add(new Phone("DT001", "iPhone 14", "Apple", 25000000));
-        danhSachDienThoai.add(new Phone("DT002", "Samsung Galaxy S23", "Samsung", 20000000));
-        danhSachDienThoai.add(new Phone("DT003", "Xiaomi 13", "Xiaomi", 15000000));
-        danhSachDienThoai.add(new Phone("DT004", "Oppo A57", "Oppo", 5000000));
+// Thêm dữ liệu mẫu
+danhSachDienThoai.push(new Phone("DT001", "iPhone 14", "Apple", 25000000));
+danhSachDienThoai.push(new Phone("DT002", "Samsung Galaxy S23", "Samsung", 20000000));
+danhSachDienThoai.push(new Phone("DT003", "Xiaomi 13", "Xiaomi", 15000000));
+danhSachDienThoai.push(new Phone("DT004", "Oppo A57", "Oppo", 5000000));
 
-        // Sắp xếp danh sách theo tên điện thoại theo thứ tự alphabet
-        Collections.sort(danhSachDienThoai, Comparator.comparing(Phone::getTen));
+// Sắp xếp danh sách theo tên điện thoại theo thứ tự alphabet
+danhSachDienThoai.sort((a, b) => a.getTen().localeCompare(b.getTen()));
 
-        // Hiển thị danh sách
-        System.out.println("Danh sách điện thoại (sắp xếp theo tên):");
-        for (Phone phone : danhSachDienThoai) {
-            System.out.println(phone);
-        }
+// Hiển thị danh sách
+console.log("Danh sách điện thoại (sắp xếp theo tên):");
+for (let phone of danhSachDienThoai) {
+    console.log(phone.toString());
+}
 
-        // Thêm mới 1 điện thoại
-        System.out.println("\nThêm mới điện thoại:");
-        System.out.print("Nhập mã điện thoại: ");
-        String ma = scanner.nextLine();
-        System.out.print("Nhập tên điện thoại: ");
-        String ten = scanner.nextLine();
-        System.out.print("Nhập hãng sản xuất: ");
-        String hang = scanner.nextLine();
-        System.out.print("Nhập giá: ");
-        double gia = scanner.nextDouble();
+// Thêm mới 1 điện thoại
+console.log("\nThêm mới điện thoại:");
+let ma = prompt("Nhập mã điện thoại: ");
+if (ma === null) {
+    console.log("Không có input. Chương trình kết thúc.");
+    return;
+}
+let ten = prompt("Nhập tên điện thoại: ");
+if (ten === null) {
+    console.log("Không có input. Chương trình kết thúc.");
+    return;
+}
+let hang = prompt("Nhập hãng sản xuất: ");
+if (hang === null) {
+    console.log("Không có input. Chương trình kết thúc.");
+    return;
+}
+let giaStr = prompt("Nhập giá: ");
+if (giaStr === null) {
+    console.log("Không có input. Chương trình kết thúc.");
+    return;
+}
+let gia = parseFloat(giaStr);
+if (isNaN(gia)) {
+    console.log("Giá không hợp lệ. Chương trình kết thúc.");
+    return;
+}
 
-        // Thêm vào danh sách
-        danhSachDienThoai.add(new Phone(ma, ten, hang, gia));
+// Thêm vào danh sách
+danhSachDienThoai.push(new Phone(ma, ten, hang, gia));
 
-        // Sắp xếp lại
-        Collections.sort(danhSachDienThoai, Comparator.comparing(Phone::getTen));
+// Sắp xếp lại
+danhSachDienThoai.sort((a, b) => a.getTen().localeCompare(b.getTen()));
 
-        // Hiển thị danh sách mới
-        System.out.println("\nDanh sách điện thoại sau khi thêm mới (sắp xếp theo tên):");
-        for (Phone phone : danhSachDienThoai) {
-            System.out.println(phone);
-        }
-
-        scanner.close();
-    }
+// Hiển thị danh sách mới
+console.log("\nDanh sách điện thoại sau khi thêm mới (sắp xếp theo tên):");
+for (let phone of danhSachDienThoai) {
+    console.log(phone.toString());
 }
